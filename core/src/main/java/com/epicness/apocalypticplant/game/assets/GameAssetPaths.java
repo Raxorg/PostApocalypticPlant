@@ -4,4 +4,7 @@ public class GameAssetPaths {
 
     public static final String LEAF_BASE = "game/leaf.png";
     public static final String LEAF_GLOW = "game/leafGlow.png";
+    public static final String FISH_BASE = "game/fish.png";
+    public static final String FISH_GLOW = "game/fishGlow.png";
+    public static final String HEART = "game/heart.png";
 }

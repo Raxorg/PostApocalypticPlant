@@ -7,6 +7,7 @@ import static com.epicness.apocalypticplant.game.GameConstants.LEAF_WIDTH;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.epicness.fundamentals.stuff.DualSprited;
+import com.epicness.fundamentals.utils.Random;
 
 public class Leaf extends DualSprited {
 
@@ -14,7 +15,9 @@ public class Leaf extends DualSprited {
         super(leafGlowSprite, leafBaseSprite);
         setBackgroundSize(LEAF_GLOW_WIDTH, LEAF_GLOW_HEIGHT);
         setForegroundSize(LEAF_WIDTH, LEAF_HEIGHT);
+        setForegroundOriginCenter();
         centerBackgroundOnForeground();
+        setColor(Random.fullyRandomColor());
     }
 
     @Override

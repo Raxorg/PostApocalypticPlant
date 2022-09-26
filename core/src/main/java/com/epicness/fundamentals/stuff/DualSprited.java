@@ -150,17 +150,21 @@ public class DualSprited implements Buttonable, Scrollable {
         foreground.setScale(scale);
     }
 
-    public void setOriginCenter() {
-        background.setOriginCenter();
-        foreground.setOriginCenter();
-    }
-
     public void setBackgroundScale(float scale) {
         background.setScale(scale);
     }
 
-    public void centerBackgroundOrigin() {
+    public void setBackgroundOriginCenter() {
         background.setOriginCenter();
+    }
+
+    public void setForegroundOriginCenter() {
+        foreground.setOriginCenter();
+    }
+
+    public void setOriginCenter() {
+        setBackgroundOriginCenter();
+        setForegroundOriginCenter();
     }
 
     public void centerBackgroundOnForeground() {

@@ -27,6 +27,12 @@ buildscript {
 allprojects {
 	apply plugin: 'eclipse'
 	apply plugin: 'idea'
+	ext {
+		shapedrawerVersion = '2.6.0'
+	}
+	repositories {
+		maven { url 'https://jitpack.io' }
+	}
 }
 
 configure(subprojects) {
