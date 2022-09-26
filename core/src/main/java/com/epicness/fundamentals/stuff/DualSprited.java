@@ -74,25 +74,49 @@ public class DualSprited implements Buttonable, Scrollable {
         foreground.setOriginBasedPosition(x, y);
     }
 
+    public float getForegroundCenterX() {
+        return foreground.getX() + foreground.getWidth() / 2f;
+    }
+
+    public float getForegroundCenterY() {
+        return foreground.getY() + foreground.getHeight() / 2f;
+    }
+
+    public Vector2 getForegroundCenter() {
+        return new Vector2(getForegroundCenterX(), getForegroundCenterY());
+    }
+
     public void translateX(float amount) {
         background.translateX(amount);
         foreground.translateX(amount);
     }
 
-    public void setBackgroundSize(float size) {
-        background.setSize(size, size);
+    public void setBackgroundSize(float width, float height) {
+        background.setSize(width, height);
     }
 
-    public float getWidth() {
+    public void setBackgroundSize(float size) {
+        setBackgroundSize(size, size);
+    }
+
+    public void setForegroundSize(float width, float height) {
+        foreground.setSize(width, height);
+    }
+
+    public void setForegroundSize(float size) {
+        setForegroundSize(size, size);
+    }
+
+    public float getBackgroundWidth() {
         return background.getWidth();
     }
 
-    public float getHeight() {
+    public float getBackgroundHeight() {
         return background.getHeight();
     }
 
-    public Vector2 getSize() {
-        return new Vector2(getWidth(), getHeight());
+    public Vector2 getBackgroundSize() {
+        return new Vector2(getBackgroundWidth(), getBackgroundHeight());
     }
 
     public void setSize(float size) {
@@ -117,7 +141,7 @@ public class DualSprited implements Buttonable, Scrollable {
         rotateForeground(degrees);
     }
 
-    public Vector2 getScale() {
+    public Vector2 getBackgroundScale() {
         return new Vector2(background.getScaleX(), background.getScaleY());
     }
 
@@ -137,6 +161,11 @@ public class DualSprited implements Buttonable, Scrollable {
 
     public void centerBackgroundOrigin() {
         background.setOriginCenter();
+    }
+
+    public void centerBackgroundOnForeground() {
+        background.setOriginCenter();
+        background.setOriginBasedPosition(getForegroundCenterX(), getForegroundCenterY());
     }
 
     public void setFlip(boolean flipX, boolean flipY) {

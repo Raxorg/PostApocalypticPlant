@@ -76,8 +76,16 @@ public class Sprited implements Buttonable, Parallaxable {
         sprite.setOriginBasedPosition(x, y);
     }
 
+    public float getCenterX() {
+        return sprite.getX() + sprite.getWidth() / 2f;
+    }
+
+    public float getCenterY() {
+        return sprite.getY() + sprite.getHeight() / 2f;
+    }
+
     public Vector2 getCenter() {
-        return new Vector2(sprite.getX() + sprite.getWidth() / 2f, sprite.getY() + sprite.getHeight() / 2f);
+        return new Vector2(getCenterX(), getCenterY());
     }
 
     public void translateY(float amount) {

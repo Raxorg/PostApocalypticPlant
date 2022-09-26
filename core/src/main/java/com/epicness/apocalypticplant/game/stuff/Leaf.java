@@ -1,26 +1,25 @@
 package com.epicness.apocalypticplant.game.stuff;
 
-import com.badlogic.gdx.graphics.Color;
+import static com.epicness.apocalypticplant.game.GameConstants.LEAF_GLOW_HEIGHT;
+import static com.epicness.apocalypticplant.game.GameConstants.LEAF_GLOW_WIDTH;
+import static com.epicness.apocalypticplant.game.GameConstants.LEAF_HEIGHT;
+import static com.epicness.apocalypticplant.game.GameConstants.LEAF_WIDTH;
+
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.epicness.fundamentals.stuff.Sprited;
+import com.epicness.fundamentals.stuff.DualSprited;
 
-public class Leaf {
-
-    private final Sprited leafBase, leafGlow;
+public class Leaf extends DualSprited {
 
     public Leaf(Sprite leafBaseSprite, Sprite leafGlowSprite) {
-        leafBase = new Sprited(leafBaseSprite);
-        leafGlow = new Sprited(leafGlowSprite);
+        super(leafGlowSprite, leafBaseSprite);
+        setBackgroundSize(LEAF_GLOW_WIDTH, LEAF_GLOW_HEIGHT);
+        setForegroundSize(LEAF_WIDTH, LEAF_HEIGHT);
+        centerBackgroundOnForeground();
     }
 
-    public void draw(SpriteBatch spriteBatch) {
-        leafBase.draw(spriteBatch);
-        leafGlow.draw(spriteBatch);
-    }
-
-    public void setColor(Color color) {
-        leafBase.setColor(color);
-        leafGlow.setColor(color);
+    @Override
+    public void setPosition(float x, float y) {
+        super.setPosition(x, y);
+        centerBackgroundOnForeground();
     }
 }
