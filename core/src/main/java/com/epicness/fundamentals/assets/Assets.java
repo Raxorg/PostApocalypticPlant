@@ -1,10 +1,14 @@
 package com.epicness.fundamentals.assets;
 
+import static com.badlogic.gdx.graphics.Texture.TextureFilter.Nearest;
+
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 
 public abstract class Assets {
 
@@ -55,8 +59,22 @@ public abstract class Assets {
     }
 
     // Getting
+    protected final Texture getTexture(String path, TextureFilter filter) {
+        Texture texture = assetManager.get(path);
+        texture.setFilter(filter, filter);
+        return texture;
+    }
+
     protected final Texture getTexture(String path) {
-        return assetManager.get(path, Texture.class);
+        return getTexture(path, Nearest);
+    }
+
+    protected final Sprite getSprite(String path, TextureFilter filter) {
+        return new Sprite(getTexture(path, filter));
+    }
+
+    protected final Sprite getSprite(String path) {
+        return getSprite(path, Nearest);
     }
 
     protected final Music getMusic(String path) {
