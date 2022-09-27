@@ -8,6 +8,8 @@ public class GameAssetPaths {
     public static final String FISH_BASE = "game/fish.png";
     public static final String FISH_GLOW = "game/fishGlow.png";
     public static final String HEART = "game/heart.png";
+    // Music
+    public static final String MUSIC = "game/mirage.ogg";
     // Sounds
     public static final String LEAF_SOUND = "game/leaf.ogg";
 }

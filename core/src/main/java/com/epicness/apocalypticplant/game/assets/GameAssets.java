@@ -7,7 +7,9 @@ import static com.epicness.apocalypticplant.game.assets.GameAssetPaths.HEART;
 import static com.epicness.apocalypticplant.game.assets.GameAssetPaths.LEAF_BASE;
 import static com.epicness.apocalypticplant.game.assets.GameAssetPaths.LEAF_GLOW;
 import static com.epicness.apocalypticplant.game.assets.GameAssetPaths.LEAF_SOUND;
+import static com.epicness.apocalypticplant.game.assets.GameAssetPaths.MUSIC;
 
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.epicness.fundamentals.assets.Assets;
@@ -18,6 +20,8 @@ public class GameAssets extends Assets {
     private Sprite leaf, leafGlow;
     private Sprite fish, fishGlow;
     private Sprite heart;
+    // Music
+    private Music music;
     // Sounds
     private Sound leafSound;
 
@@ -28,6 +32,7 @@ public class GameAssets extends Assets {
         loadTexture(FISH_BASE);
         loadTexture(FISH_GLOW);
         loadTexture(HEART);
+        loadMusic(MUSIC);
         loadSound(LEAF_SOUND);
     }
 
@@ -39,6 +44,8 @@ public class GameAssets extends Assets {
         fish = getSprite(FISH_BASE, Linear);
         fishGlow = getSprite(FISH_GLOW, Linear);
         heart = getSprite(HEART, Linear);
+        // Music
+        music = getMusic(MUSIC);
         // Sounds
         leafSound = getSound(LEAF_SOUND);
     }
@@ -62,6 +69,11 @@ public class GameAssets extends Assets {
 
     public Sprite getHeart() {
         return heart;
+    }
+
+    // Music
+    public Music getMusic() {
+        return music;
     }
 
     // Sounds

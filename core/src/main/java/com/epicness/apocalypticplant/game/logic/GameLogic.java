@@ -13,6 +13,7 @@ public class GameLogic extends Logic {
         registerHandler(new GameInputHandler());
         registerHandler(new InstructionsHandler());
         registerHandler(new LivesHandler());
+        registerHandler(new MusicHandler());
         registerHandler(new PlantHandler());
         registerHandler(new ScoreHandler());
     }

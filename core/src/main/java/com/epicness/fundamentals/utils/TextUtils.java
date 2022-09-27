@@ -33,6 +33,16 @@ public class TextUtils {
         return getTextSize(font, text, targetWidth, hAlign, wrap, truncate).x;
     }
 
+    public static float getTextWidth(Text text) {
+        return getTextWidth(
+                text.getFont(),
+                text.getText(),
+                text.getTextTargetWidth(),
+                text.getHorizontalAlignment(),
+                true,
+                text.getTruncate());
+    }
+
     public static float getTextHeight(BitmapFont font, String text) {
         return getTextSize(font, text).y;
     }
