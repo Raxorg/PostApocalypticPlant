@@ -28,6 +28,7 @@ public class GameRenderer extends Renderer<GameStuff> {
             stuff.getLeaves().get(i).draw(spriteBatch);
         }
         stuff.getInstructions().draw(spriteBatch);
+        stuff.getGameOverText().draw(spriteBatch);
         stuff.getCounter().draw(spriteBatch);
         for (int i = 0; i < stuff.getLives().size; i++) {
             stuff.getLives().get(i).draw(spriteBatch);

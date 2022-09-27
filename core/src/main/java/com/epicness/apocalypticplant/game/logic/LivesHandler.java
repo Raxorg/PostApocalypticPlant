@@ -29,4 +29,12 @@ public class LivesHandler extends GameLogicHandler {
         lives.removeIndex(lives.size - 1);
         lives.end();
     }
+
+    public void addLife() {
+        DelayedRemovalArray<Sprited> lives = stuff.getLives();
+        Sprited life = new Sprited(assets.getHeart());
+        life.setSize(100f);
+        life.translateX(100f * lives.size);
+        lives.add(life);
+    }
 }

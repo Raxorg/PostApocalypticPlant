@@ -1,6 +1,8 @@
 package com.epicness.apocalypticplant.game.logic;
 
+import static com.badlogic.gdx.utils.Align.center;
 import static com.epicness.fundamentals.SharedConstants.CAMERA_HEIGHT;
+import static com.epicness.fundamentals.SharedConstants.CAMERA_WIDTH;
 
 import com.epicness.fundamentals.stuff.Text;
 
@@ -10,9 +12,12 @@ public class ScoreHandler extends GameLogicHandler {
 
     @Override
     protected void init() {
-        Text score = stuff.getGameOverText();
-        score.setY(CAMERA_HEIGHT * 0.6f);
-        score.setText("score: " + score);
+        score = 1;
+        Text scoreText = stuff.getGameOverText();
+        scoreText.setY(CAMERA_HEIGHT - 20f);
+        scoreText.setText("score: " + score);
+        scoreText.setTextTargetWidth(CAMERA_WIDTH);
+        scoreText.setHorizontalAlignment(center);
     }
 
     public void showFinalScore() {

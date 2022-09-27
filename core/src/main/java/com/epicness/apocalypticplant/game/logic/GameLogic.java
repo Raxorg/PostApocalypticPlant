@@ -6,7 +6,6 @@ public class GameLogic extends Logic {
 
     private final CounterHandler counterHandler;
     private final FishHandler fishHandler;
-    private final PlantHandler plantHandler;
 
     public GameLogic() {
         registerHandler(counterHandler = new CounterHandler());
@@ -14,7 +13,7 @@ public class GameLogic extends Logic {
         registerHandler(new GameInputHandler());
         registerHandler(new InstructionsHandler());
         registerHandler(new LivesHandler());
-        registerHandler(plantHandler = new PlantHandler());
+        registerHandler(new PlantHandler());
         registerHandler(new ScoreHandler());
     }
 
@@ -22,6 +21,5 @@ public class GameLogic extends Logic {
     public void update(float delta) {
         counterHandler.update(delta);
         fishHandler.update(delta);
-        plantHandler.update(delta);
     }
 }

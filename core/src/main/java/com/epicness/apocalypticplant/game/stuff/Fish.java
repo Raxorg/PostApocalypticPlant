@@ -23,7 +23,7 @@ public class Fish extends DualSprited {
         Color color = Random.fullyRandomColor();
         setColor(color);
         text.setColor(color);
-        float scale = MathUtils.random(0.25f, 0.7f);
+        float scale = MathUtils.random(0.25f, 0.75f);
         setSize(400f * scale, 200f * scale);
     }
 

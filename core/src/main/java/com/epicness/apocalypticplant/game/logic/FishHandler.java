@@ -15,7 +15,7 @@ public class FishHandler extends GameLogicHandler {
         time -= delta;
         if (time <= 0f) {
             spawnFish();
-            time = MathUtils.random(-1f, 5f);
+            time = MathUtils.random(-1.2f, 4.5f);
         }
         moveFish(delta);
     }
