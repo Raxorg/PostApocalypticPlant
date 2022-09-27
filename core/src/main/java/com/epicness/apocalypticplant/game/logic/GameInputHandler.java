@@ -9,6 +9,7 @@ public class GameInputHandler extends InputHandler<GameLogic, GameStuff> {
     @Override
     public void touchDown(float x, float y) {
         logic.handler(CounterHandler.class).touchDown();
+        logic.handler(MusicHandler.class).playMusic();
     }
 
     @Override
