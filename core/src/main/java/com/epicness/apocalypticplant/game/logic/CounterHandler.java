@@ -41,7 +41,7 @@ public class CounterHandler extends GameLogicHandler {
             return;
         }
         time -= delta;
-        counter.setText(String.format("%.1f", time));
+        counter.setText((time + "").substring(0, 3));
         if (time <= 0f) {
             logic.handler(LivesHandler.class).loseLife();
             time = MathUtils.random(2.8f, 3.5f);

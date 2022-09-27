@@ -15,7 +15,6 @@ public class InstructionsHandler extends GameLogicHandler {
         instructions.setPosition(20f, CAMERA_HEIGHT - 20f);
         instructions.setText("Click the screen before 0\n.3 error margin\ni to hide\nz for zen mode");
         instructions.setTextTargetWidth(CAMERA_WIDTH);
-        instructions.setColor(WHITE);
     }
 
     public void iPressed() {
