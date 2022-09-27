@@ -19,5 +19,12 @@ public class GameInputHandler extends InputHandler<GameLogic, GameStuff> {
         if (keycode == Input.Keys.R) {
             logic.initialLogic();
         }
+        if (keycode == Input.Keys.Z) {
+            logic.handler(CounterHandler.class).disable();
+            logic.handler(FishHandler.class).disable();
+            logic.handler(ScoreHandler.class).disable();
+            logic.handler(LivesHandler.class).disable();
+            logic.handler(InstructionsHandler.class).disable();
+        }
     }
 }

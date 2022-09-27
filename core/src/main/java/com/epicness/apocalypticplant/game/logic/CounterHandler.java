@@ -12,12 +12,13 @@ import com.epicness.fundamentals.stuff.Text;
 public class CounterHandler extends GameLogicHandler {
 
     private float time;
-    private boolean paused;
+    private boolean paused, disabled;
 
     @Override
     protected void init() {
         time = 4f;
         paused = true;
+        disabled = false;
         Text counter = stuff.getCounter();
         counter.setY(CAMERA_HEIGHT / 2f);
         counter.setText(time + "");
@@ -28,6 +29,9 @@ public class CounterHandler extends GameLogicHandler {
     }
 
     public void update(float delta) {
+        if (disabled) {
+            return;
+        }
         if (paused) {
             return;
         }
@@ -50,18 +54,27 @@ public class CounterHandler extends GameLogicHandler {
     }
 
     public void touchDown() {
+        if (disabled) {
+            logic.handler(PlantHandler.class).grow();
+            return;
+        }
         if (paused) {
             paused = false;
         }
         if (time >= 2f) {
             return;
         }
-        if (time > 0.3f) {
+        if (time > 0.33f) {
             logic.handler(LivesHandler.class).loseLife();
         } else {
             logic.handler(PlantHandler.class).grow();
             logic.handler(ScoreHandler.class).addScore();
         }
         time = MathUtils.random(2.8f, 3.5f);
+    }
+
+    public void disable() {
+        disabled = true;
+        stuff.getCounter().setColor(CLEAR);
     }
 }

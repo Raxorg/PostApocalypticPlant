@@ -2,18 +2,19 @@ package com.epicness.apocalypticplant.game.logic;
 
 import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.epicness.fundamentals.stuff.Sprited;
+import com.epicness.fundamentals.utils.Random;
 
 public class LivesHandler extends GameLogicHandler {
 
+    private boolean disabled;
+
     @Override
     protected void init() {
+        disabled = false;
         DelayedRemovalArray<Sprited> lives = stuff.getLives();
         lives.clear();
         for (int i = 0; i < 3; i++) {
-            Sprited life = new Sprited(assets.getHeart());
-            life.setSize(100f);
-            life.translateX(100f * i);
-            lives.add(life);
+            addLife();
         }
     }
 
@@ -31,10 +32,19 @@ public class LivesHandler extends GameLogicHandler {
     }
 
     public void addLife() {
+        if (disabled) {
+            return;
+        }
         DelayedRemovalArray<Sprited> lives = stuff.getLives();
         Sprited life = new Sprited(assets.getHeart());
         life.setSize(100f);
         life.translateX(100f * lives.size);
+        life.setColor(Random.fullyRandomColor());
         lives.add(life);
+    }
+
+    public void disable() {
+        stuff.getLives().clear();
+        disabled = true;
     }
 }

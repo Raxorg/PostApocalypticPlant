@@ -10,8 +10,17 @@ import com.epicness.apocalypticplant.game.stuff.Fish;
 public class FishHandler extends GameLogicHandler {
 
     private float time;
+    private boolean disabled;
+
+    @Override
+    protected void init() {
+        disabled = false;
+    }
 
     public void update(float delta) {
+        if (disabled) {
+            return;
+        }
         time -= delta;
         if (time <= 0f) {
             spawnFish();
@@ -38,5 +47,10 @@ public class FishHandler extends GameLogicHandler {
             }
         }
         fishes.end();
+    }
+
+    public void disable() {
+        disabled = true;
+        stuff.getFishes().clear();
     }
 }

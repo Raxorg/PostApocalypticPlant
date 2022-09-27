@@ -69,6 +69,10 @@ public class DualSprited implements Buttonable, Scrollable {
         setPosition(position.x, position.y);
     }
 
+    public void setForegroundOriginBasedPosition(float x, float y) {
+        foreground.setOriginBasedPosition(x, y);
+    }
+
     public void setOriginBasedPosition(float x, float y) {
         background.setOriginBasedPosition(x, y);
         foreground.setOriginBasedPosition(x, y);
@@ -145,13 +149,22 @@ public class DualSprited implements Buttonable, Scrollable {
         return new Vector2(background.getScaleX(), background.getScaleY());
     }
 
-    public void setScale(float scale) {
+    public void setBackgroundScale(float scale) {
         background.setScale(scale);
+    }
+
+    public void setForegroundScale(float scale) {
         foreground.setScale(scale);
     }
 
-    public void setBackgroundScale(float scale) {
-        background.setScale(scale);
+    public void setScale(float scale) {
+        setBackgroundScale(scale);
+        setForegroundScale(scale);
+    }
+
+    public void setOrigin(float x, float y) {
+        background.setOrigin(x, y);
+        foreground.setOrigin(x, y);
     }
 
     public void setBackgroundOriginCenter() {

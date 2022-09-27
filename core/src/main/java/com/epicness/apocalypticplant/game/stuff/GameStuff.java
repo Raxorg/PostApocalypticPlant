@@ -2,6 +2,7 @@ package com.epicness.apocalypticplant.game.stuff;
 
 import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.epicness.apocalypticplant.game.assets.GameAssets;
+import com.epicness.fundamentals.stuff.DualSprited;
 import com.epicness.fundamentals.stuff.Sprited;
 import com.epicness.fundamentals.stuff.Stuff;
 import com.epicness.fundamentals.stuff.Text;
@@ -9,7 +10,7 @@ import com.epicness.fundamentals.stuff.Text;
 public class GameStuff extends Stuff<GameAssets> {
 
     private Plant plant;
-    private DelayedRemovalArray<Leaf> leaves;
+    private DelayedRemovalArray<DualSprited> leaves;
     private Text instructions, counter, gameOverText;
     private DelayedRemovalArray<Sprited> lives;
     private DelayedRemovalArray<Fish> fish;
@@ -30,7 +31,7 @@ public class GameStuff extends Stuff<GameAssets> {
         return plant;
     }
 
-    public DelayedRemovalArray<Leaf> getLeaves() {
+    public DelayedRemovalArray<DualSprited> getLeaves() {
         return leaves;
     }
 
@@ -42,7 +43,7 @@ public class GameStuff extends Stuff<GameAssets> {
         return counter;
     }
 
-    public Text getGameOverText() {
+    public Text getScoreText() {
         return gameOverText;
     }
 

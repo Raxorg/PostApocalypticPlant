@@ -1,5 +1,7 @@
 package com.epicness.apocalypticplant.game;
 
+import static com.badlogic.gdx.graphics.Texture.TextureFilter.Linear;
+
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -14,7 +16,9 @@ public class GameRenderer extends Renderer<GameStuff> {
     private final ShapeDrawer shapeDrawer;
 
     public GameRenderer() {
-        shapeDrawer = new ShapeDrawer(spriteBatch, new TextureRegion(new Texture("fundamentals/images/pixel.png")));
+        Texture pixel = new Texture("fundamentals/images/pixel.png");
+        pixel.setFilter(Linear, Linear);
+        shapeDrawer = new ShapeDrawer(spriteBatch, new TextureRegion(pixel));
         shapeDrawer.setDefaultLineWidth(10f);
     }
 
@@ -28,7 +32,7 @@ public class GameRenderer extends Renderer<GameStuff> {
             stuff.getLeaves().get(i).draw(spriteBatch);
         }
         stuff.getInstructions().draw(spriteBatch);
-        stuff.getGameOverText().draw(spriteBatch);
+        stuff.getScoreText().draw(spriteBatch);
         stuff.getCounter().draw(spriteBatch);
         for (int i = 0; i < stuff.getLives().size; i++) {
             stuff.getLives().get(i).draw(spriteBatch);
