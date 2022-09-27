@@ -1,7 +1,6 @@
 package com.epicness.apocalypticplant.game.logic;
 
 import static com.badlogic.gdx.graphics.Color.CLEAR;
-import static com.badlogic.gdx.graphics.Color.WHITE;
 import static com.epicness.fundamentals.SharedConstants.CAMERA_HEIGHT;
 import static com.epicness.fundamentals.SharedConstants.CAMERA_WIDTH;
 
