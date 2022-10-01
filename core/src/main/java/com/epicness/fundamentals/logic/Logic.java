@@ -60,7 +60,7 @@ public abstract class Logic {
         return logicHandlers;
     }
 
-    public <H extends LogicHandler> H handler(Class<H> handlerClass) {
+    public <H extends LogicHandler> H get(Class<H> handlerClass) {
         for (LogicHandler logicHandler : logicHandlers) {
             if (logicHandler.getClass().equals(handlerClass)) {
                 return (H) logicHandler;

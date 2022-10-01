@@ -24,7 +24,7 @@ public class LivesHandler extends GameLogicHandler {
             return;
         }
         if (lives.size == 1) {
-            logic.handler(ScoreHandler.class).showFinalScore();
+            logic.get(ScoreHandler.class).showFinalScore();
         }
         lives.begin();
         lives.removeIndex(lives.size - 1);

@@ -30,7 +30,7 @@ public class FishHandler extends GameLogicHandler {
     }
 
     private void spawnFish() {
-        Fish fish = new Fish(assets.getFishGlow(), assets.getFish(), sharedAssets.getPixelFont());
+        Fish fish = new Fish(assets.getFishGlow(), assets.getFish(), assets.getSmallerPixelFont());
         fish.translateX(CAMERA_WIDTH);
         fish.translateY(MathUtils.random(CAMERA_HEIGHT - fish.getBackgroundHeight()));
         stuff.getFishes().add(fish);

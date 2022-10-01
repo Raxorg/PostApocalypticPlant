@@ -8,24 +8,34 @@ public class GameInputHandler extends InputHandler<GameLogic, GameStuff> {
 
     @Override
     public void touchDown(float x, float y) {
-        logic.handler(CounterHandler.class).touchDown();
-        logic.handler(MusicHandler.class).playMusic();
+        logic.get(CounterHandler.class).touchDown();
+        logic.get(MusicHandler.class).playMusic();
+        logic.get(ResetButtonHandler.class).touchDown(x, y);
+        logic.get(ZenButtonHandler.class).touchDown(x, y);
+    }
+
+    @Override
+    public void touchDragged(float x, float y) {
+        logic.get(ZenButtonHandler.class).touchDragged(x, y);
+        logic.get(ResetButtonHandler.class).touchDragged(x, y);
+    }
+
+    @Override
+    public void touchUp(float x, float y) {
+        logic.get(ResetButtonHandler.class).touchUp(x, y);
+        logic.get(ZenButtonHandler.class).touchUp(x, y);
     }
 
     @Override
     public void keyDown(int keycode) {
         if (keycode == Input.Keys.I) {
-            logic.handler(InstructionsHandler.class).iPressed();
+            logic.get(InstructionsHandler.class).iPressed();
         }
         if (keycode == Input.Keys.R) {
-            logic.initialLogic();
+            logic.get(ResetButtonHandler.class).buttonPressed();
         }
         if (keycode == Input.Keys.Z) {
-            logic.handler(CounterHandler.class).disable();
-            logic.handler(FishHandler.class).disable();
-            logic.handler(ScoreHandler.class).disable();
-            logic.handler(LivesHandler.class).disable();
-            logic.handler(InstructionsHandler.class).disable();
+            logic.get(ZenButtonHandler.class).buttonPressed();
         }
     }
 }

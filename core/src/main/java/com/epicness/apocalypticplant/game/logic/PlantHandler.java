@@ -30,7 +30,7 @@ public class PlantHandler extends GameLogicHandler {
         lastY = 100f;
 
         lastColor = Random.fullyRandomColor();
-        Segment initialSegment = new Segment(startX, startY, lastX, lastY, Random.fullyRandomColor(), lastColor);
+        Segment initialSegment = new Segment(startX, startY, lastX, lastY, Random.fullyRandomColor(), lastColor, 0f);
         List<Segment> segments = stuff.getPlant().getSegments();
         segments.clear();
         segments.add(initialSegment);
@@ -38,7 +38,7 @@ public class PlantHandler extends GameLogicHandler {
         DelayedRemovalArray<DualSprited> leaves = stuff.getLeaves();
         leaves.begin();
         leaves.clear();
-        spawnLeaf(initialSegment, 1f, 90f, lastColor);
+        spawnLeaf(initialSegment, 1f, 90f, lastColor, 1f);
         leaves.end();
     }
 
@@ -49,13 +49,15 @@ public class PlantHandler extends GameLogicHandler {
         float nextY = MathUtils.random(lastY + 150f, lastY + 240f);
         Vector2 next = new Vector2(nextX, nextY);
         Color endColor = Random.fullyRandomColor();
-        Segment newSegment = new Segment(lastX, lastY, next.x, next.y, lastColor, endColor);
+        float curving = MathUtils.random(-90f, 90f);
+        Segment newSegment = new Segment(lastX, lastY, next.x, next.y, lastColor, endColor, curving);
         segments.add(newSegment);
 
         if (MathUtils.randomBoolean()) {
             float extraAngle = MathUtils.randomBoolean() ? 45f : -45f;
             Vector2 extra = next.cpy().rotateAroundDeg(new Vector2(lastX, lastY), extraAngle);
-            Segment extraSegment = new Segment(lastX, lastY, extra.x, extra.y, lastColor, endColor);
+            curving = MathUtils.random(-90f, 90f);
+            Segment extraSegment = new Segment(lastX, lastY, extra.x, extra.y, lastColor, endColor, curving);
             spawnLeaves(extraSegment);
             segments.add(extraSegment);
         }
@@ -71,7 +73,7 @@ public class PlantHandler extends GameLogicHandler {
         assets.getLeafSound().play();
     }
 
-    private void spawnLeaf(Segment segment, float segmentPortion, float angle, Color color) {
+    private void spawnLeaf(Segment segment, float segmentPortion, float angle, Color color, float scale) {
         int pointIndex = (int) MathUtils.map(0f, 1f, 0, segment.path.size - 1, segmentPortion);
         Vector2 segmentPoint = segment.path.get(pointIndex);
         DualSprited leaf = new DualSprited(assets.getLeaf(), assets.getLeafGlow());
@@ -80,7 +82,7 @@ public class PlantHandler extends GameLogicHandler {
         leaf.rotate(angle);
         leaf.setOriginBasedPosition(segmentPoint.x, segmentPoint.y);
         leaf.setColor(color);
-        leaf.setScale(MathUtils.random(0.5f, 1f));
+        leaf.setScale(scale);
         stuff.getLeaves().add(leaf);
     }
 
@@ -90,13 +92,13 @@ public class PlantHandler extends GameLogicHandler {
             float portion = MathUtils.random(0.2f, 0.8f);
             float angle = MathUtils.random(-40f, 220f);
             Color color = segment.color1.cpy().lerp(segment.color2, portion);
-            spawnLeaf(segment, portion, angle, color);
+            spawnLeaf(segment, portion, angle, color, MathUtils.random(0.5f, 1f));
         }
-        spawnLeaf(segment, 1f, MathUtils.random(0f, 180f), segment.color2);
+        spawnLeaf(segment, 1f, MathUtils.random(0f, 180f), segment.color2, 1f);
     }
 
     private void newPlant() {
-        logic.handler(LivesHandler.class).addLife();
+        logic.get(LivesHandler.class).addLife();
         lastX = MathUtils.random(50f, CAMERA_WIDTH - 50f);
         lastY = 0f;
     }

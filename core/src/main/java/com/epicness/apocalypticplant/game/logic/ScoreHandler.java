@@ -25,7 +25,7 @@ public class ScoreHandler extends GameLogicHandler {
 
     public void showFinalScore() {
         Text scoreText = stuff.getScoreText();
-        scoreText.setText("Game over\nYour score is " + score + "\nr to restart");
+        scoreText.setText("Game over\nYour score is " + score);
     }
 
     public void addScore() {

@@ -15,7 +15,9 @@ public class GameLogic extends Logic {
         registerHandler(new LivesHandler());
         registerHandler(new MusicHandler());
         registerHandler(new PlantHandler());
+        registerHandler(new ResetButtonHandler());
         registerHandler(new ScoreHandler());
+        registerHandler(new ZenButtonHandler());
     }
 
     @Override

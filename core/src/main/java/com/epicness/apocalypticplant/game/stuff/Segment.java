@@ -15,11 +15,11 @@ public class Segment {
     public final Array<Vector2> path;
     public final Color color1, color2;
 
-    public Segment(float x1, float y1, float x2, float y2, Color startColor, Color endColor) {
+    public Segment(float x1, float y1, float x2, float y2, Color startColor, Color endColor, float curving) {
         Vector2 start = new Vector2(x1, y1);
         Vector2 end = new Vector2(x2, y2);
         Vector2 curver = start.cpy().lerp(end, 0.5f);
-        curver.x += MathUtils.randomSign() * MathUtils.random(40f, 90f);
+        curver.x += curving;
         Bezier<Vector2> curve = new Bezier<>(start, curver, end);
 
         path = new Array<>();

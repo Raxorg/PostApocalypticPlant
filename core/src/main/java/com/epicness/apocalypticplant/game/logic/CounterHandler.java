@@ -43,7 +43,7 @@ public class CounterHandler extends GameLogicHandler {
         time -= delta;
         counter.setText((time + "").substring(0, 3));
         if (time <= 0f) {
-            logic.handler(LivesHandler.class).loseLife();
+            logic.get(LivesHandler.class).loseLife();
             time = MathUtils.random(2.8f, 3.5f);
         }
         if (time <= 1f) {
@@ -55,7 +55,7 @@ public class CounterHandler extends GameLogicHandler {
 
     public void touchDown() {
         if (disabled) {
-            logic.handler(PlantHandler.class).grow();
+            logic.get(PlantHandler.class).grow();
             return;
         }
         if (paused) {
@@ -65,10 +65,10 @@ public class CounterHandler extends GameLogicHandler {
             return;
         }
         if (time > 0.33f) {
-            logic.handler(LivesHandler.class).loseLife();
+            logic.get(LivesHandler.class).loseLife();
         } else {
-            logic.handler(PlantHandler.class).grow();
-            logic.handler(ScoreHandler.class).addScore();
+            logic.get(PlantHandler.class).grow();
+            logic.get(ScoreHandler.class).addScore();
         }
         time = MathUtils.random(2.8f, 3.5f);
     }

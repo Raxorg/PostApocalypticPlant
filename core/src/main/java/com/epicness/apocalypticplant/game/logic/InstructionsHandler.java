@@ -12,7 +12,7 @@ public class InstructionsHandler extends GameLogicHandler {
     protected void init() {
         Text instructions = stuff.getInstructions();
         instructions.setPosition(20f, CAMERA_HEIGHT - 20f);
-        instructions.setText("Click the screen before 0\n.3 error margin\ni to hide\nz for zen mode");
+        instructions.setText("Click the screen before 0\n.3 error margin\ni to hide");
         instructions.setTextTargetWidth(CAMERA_WIDTH);
     }
 

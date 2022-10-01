@@ -2,7 +2,6 @@ package com.epicness.apocalypticplant.game.stuff;
 
 import static com.epicness.apocalypticplant.game.GameConstants.BUTTON_SIZE;
 import static com.epicness.apocalypticplant.game.GameConstants.BUTTON_X;
-import static com.epicness.fundamentals.SharedConstants.WHITE_CLEAR_50;
 
 import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.epicness.apocalypticplant.game.assets.GameAssets;
@@ -34,13 +33,11 @@ public class GameStuff extends Stuff<GameAssets> {
         resetButton.setSize(BUTTON_SIZE, BUTTON_SIZE);
         resetButton.setPosition(BUTTON_X, BUTTON_SIZE);
         resetButton.setText("R");
-        resetButton.setBackgroundColor(WHITE_CLEAR_50);
 
         zenButton = new SpritedText(sharedAssets.getSquareInverted(), assets.getSmallerPixelFont());
         zenButton.setSize(BUTTON_SIZE, BUTTON_SIZE);
         zenButton.setX(BUTTON_X);
         zenButton.setText("Z");
-        zenButton.setBackgroundColor(WHITE_CLEAR_50);
 
         fish = new DelayedRemovalArray<>();
     }
