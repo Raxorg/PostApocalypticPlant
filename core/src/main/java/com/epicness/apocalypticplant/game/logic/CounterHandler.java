@@ -14,6 +14,10 @@ public class CounterHandler extends GameLogicHandler {
     private float time;
     private boolean paused, disabled;
 
+    private void updateCounter() {
+        stuff.getCounter().setText((time * 10 + "").substring(0, 2));
+    }
+
     @Override
     protected void init() {
         time = 4f;
@@ -21,7 +25,7 @@ public class CounterHandler extends GameLogicHandler {
         disabled = false;
         Text counter = stuff.getCounter();
         counter.setY(CAMERA_HEIGHT / 2f);
-        counter.setText(time + "");
+        updateCounter();
         counter.setTextTargetWidth(CAMERA_WIDTH);
         counter.setHorizontalAlignment(center);
         counter.setCenterVertical(true);
@@ -41,7 +45,7 @@ public class CounterHandler extends GameLogicHandler {
             return;
         }
         time -= delta;
-        counter.setText((time + "").substring(0, 3));
+        updateCounter();
         if (time <= 0f) {
             logic.get(LivesHandler.class).loseLife();
             time = MathUtils.random(2.8f, 3.5f);

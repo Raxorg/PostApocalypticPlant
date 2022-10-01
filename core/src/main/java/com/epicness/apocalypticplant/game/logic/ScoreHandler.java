@@ -29,7 +29,7 @@ public class ScoreHandler extends GameLogicHandler {
     }
 
     public void addScore() {
-        score *= 2;
+        score = (int) ((score + 1) * 1.5);
         Text scoreText = stuff.getScoreText();
         scoreText.setText("score: " + score);
     }

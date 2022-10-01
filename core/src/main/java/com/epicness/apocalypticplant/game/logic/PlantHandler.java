@@ -10,7 +10,6 @@ import static com.epicness.fundamentals.SharedConstants.CAMERA_WIDTH;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.epicness.apocalypticplant.game.stuff.Segment;
 import com.epicness.fundamentals.stuff.DualSprited;
@@ -30,7 +29,8 @@ public class PlantHandler extends GameLogicHandler {
         lastY = 100f;
 
         lastColor = Random.fullyRandomColor();
-        Segment initialSegment = new Segment(startX, startY, lastX, lastY, Random.fullyRandomColor(), lastColor, 0f);
+        float curving = MathUtils.random(-25f, 25f);
+        Segment initialSegment = new Segment(startX, startY, lastX, lastY, Random.fullyRandomColor(), lastColor, curving);
         List<Segment> segments = stuff.getPlant().getSegments();
         segments.clear();
         segments.add(initialSegment);
@@ -45,8 +45,14 @@ public class PlantHandler extends GameLogicHandler {
     public void grow() {
         List<Segment> segments = stuff.getPlant().getSegments();
         float nextX = MathUtils.random(lastX - 125f, lastX + 125f);
-        nextX = MathUtils.clamp(nextX, 30f, CAMERA_WIDTH - 30f);
+        nextX = MathUtils.clamp(nextX, 50f, CAMERA_WIDTH - 50f);
         float nextY = MathUtils.random(lastY + 150f, lastY + 240f);
+        if (nextY >= CAMERA_HEIGHT - 50f) {
+            newPlant();
+            nextX = MathUtils.random(lastX - 125f, lastX + 125f);
+            nextX = MathUtils.clamp(nextX, 50f, CAMERA_WIDTH - 50f);
+            nextY = MathUtils.random(lastY + 150f, lastY + 240f);
+        }
         Vector2 next = new Vector2(nextX, nextY);
         Color endColor = Random.fullyRandomColor();
         float curving = MathUtils.random(-90f, 90f);
@@ -66,17 +72,13 @@ public class PlantHandler extends GameLogicHandler {
         lastX = nextX;
         lastY = nextY;
         spawnLeaves(newSegment);
-        Array<Vector2> path = newSegment.path;
-        if (path.get(path.size - 1).y >= CAMERA_HEIGHT - 50f) {
-            newPlant();
-        }
         assets.getLeafSound().play();
     }
 
     private void spawnLeaf(Segment segment, float segmentPortion, float angle, Color color, float scale) {
         int pointIndex = (int) MathUtils.map(0f, 1f, 0, segment.path.size - 1, segmentPortion);
         Vector2 segmentPoint = segment.path.get(pointIndex);
-        DualSprited leaf = new DualSprited(assets.getLeaf(), assets.getLeafGlow());
+        DualSprited leaf = new DualSprited(assets.getLeafGlow(), assets.getLeaf());
         leaf.setSize(LEAF_WIDTH, LEAF_HEIGHT);
         leaf.setOrigin(LEAF_ORIGIN_X, LEAF_ORIGIN_Y);
         leaf.rotate(angle);
@@ -94,12 +96,25 @@ public class PlantHandler extends GameLogicHandler {
             Color color = segment.color1.cpy().lerp(segment.color2, portion);
             spawnLeaf(segment, portion, angle, color, MathUtils.random(0.5f, 1f));
         }
-        spawnLeaf(segment, 1f, MathUtils.random(0f, 180f), segment.color2, 1f);
+        spawnLeaf(segment, 1f, MathUtils.random(0f, 180f), segment.color2, MathUtils.random(0.5f, 1f));
     }
 
     private void newPlant() {
         logic.get(LivesHandler.class).addLife();
-        lastX = MathUtils.random(50f, CAMERA_WIDTH - 50f);
+        lastX = MathUtils.random(75f, CAMERA_WIDTH - 75f);
         lastY = 0f;
+        for (int i = 0; i < stuff.getPlant().getSegments().size() - 20; i++) {
+            Segment segment = stuff.getPlant().getSegments().get(i);
+            segment.color1.a = Math.max(segment.color1.a - 0.075f, 0.1f);
+            segment.color2.a = Math.max(segment.color2.a - 0.075f, 0.1f);
+        }
+        for (int i = 0; i < stuff.getLeaves().size - 50; i++) {
+            DualSprited leaf = stuff.getLeaves().get(i);
+
+            Color color = leaf.getForegroundColor();
+            color.a = Math.max(color.a - 0.2f, 0.1f);
+            leaf.setForegroundColor(color);
+            leaf.setBackgroundColor(color);
+        }
     }
 }
