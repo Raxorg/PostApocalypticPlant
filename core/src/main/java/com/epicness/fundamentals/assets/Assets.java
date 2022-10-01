@@ -59,14 +59,14 @@ public abstract class Assets {
     }
 
     // Getting
-    protected final Texture getTexture(String path, TextureFilter filter) {
-        Texture texture = assetManager.get(path);
-        texture.setFilter(filter, filter);
-        return texture;
+    protected final Texture getTexture(String path) {
+        return assetManager.get(path);
     }
 
-    protected final Texture getTexture(String path) {
-        return getTexture(path, Nearest);
+    protected final Texture getTexture(String path, TextureFilter filter) {
+        Texture texture = getTexture(path);
+        texture.setFilter(filter, filter);
+        return texture;
     }
 
     protected final Sprite getSprite(String path, TextureFilter filter) {
@@ -87,5 +87,11 @@ public abstract class Assets {
 
     protected final BitmapFont getFont(String path) {
         return assetManager.get(path, BitmapFont.class);
+    }
+
+    protected final BitmapFont getFont(String path, float scale) {
+        BitmapFont font = getFont(path);
+        font.getData().setScale(scale);
+        return font;
     }
 }

@@ -15,8 +15,7 @@ public class Plant {
 
     public void draw(ShapeDrawer shapeDrawer) {
         for (int i = 0; i < segments.size(); i++) {
-            Segment segment = segments.get(i);
-            shapeDrawer.line(segment.start, segment.end, segment.color1, segment.color2);
+            segments.get(i).draw(shapeDrawer);
         }
     }
 

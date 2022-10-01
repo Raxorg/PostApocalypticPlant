@@ -18,7 +18,7 @@ public class Fish extends DualSprited {
     public Fish(Sprite glowSprite, Sprite fishSprite, BitmapFont font) {
         super(glowSprite, fishSprite);
         text = new Text(font);
-        text.setText(MathUtils.randomBoolean(0.05f) ? "I am wiggling I swear" : "");
+        text.setText(MathUtils.randomBoolean(0.02f) ? "I am wiggling I swear" : "");
         text.setTextTargetWidth(500f);
         speed = MathUtils.random(75f, 400f);
         Color color = Random.fullyRandomColor();

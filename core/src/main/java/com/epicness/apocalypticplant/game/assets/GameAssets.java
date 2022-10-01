@@ -8,9 +8,12 @@ import static com.epicness.apocalypticplant.game.assets.GameAssetPaths.LEAF_BASE
 import static com.epicness.apocalypticplant.game.assets.GameAssetPaths.LEAF_GLOW;
 import static com.epicness.apocalypticplant.game.assets.GameAssetPaths.LEAF_SOUND;
 import static com.epicness.apocalypticplant.game.assets.GameAssetPaths.MUSIC;
+import static com.epicness.apocalypticplant.game.assets.GameAssetPaths.PIXEL_FONT;
+import static com.epicness.apocalypticplant.game.assets.GameAssetPaths.SMALLER_PIXEL_FONT;
 
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.epicness.fundamentals.assets.Assets;
 
@@ -24,6 +27,8 @@ public class GameAssets extends Assets {
     private Music music;
     // Sounds
     private Sound leafSound;
+    // Fonts
+    private BitmapFont pixelFont, smallerPixelFont;
 
     @Override
     public void queueAssetLoading() {
@@ -34,6 +39,8 @@ public class GameAssets extends Assets {
         loadTexture(HEART);
         loadMusic(MUSIC);
         loadSound(LEAF_SOUND);
+        loadFont(PIXEL_FONT);
+        loadFont(SMALLER_PIXEL_FONT);
     }
 
     @Override
@@ -48,6 +55,9 @@ public class GameAssets extends Assets {
         music = getMusic(MUSIC);
         // Sounds
         leafSound = getSound(LEAF_SOUND);
+        // Fonts
+        pixelFont = getFont(PIXEL_FONT, 6f);
+        smallerPixelFont = getFont(SMALLER_PIXEL_FONT, 3f);
     }
 
     // Sprites
@@ -79,5 +89,14 @@ public class GameAssets extends Assets {
     // Sounds
     public Sound getLeafSound() {
         return leafSound;
+    }
+
+    // Fonts
+    public BitmapFont getPixelFont() {
+        return pixelFont;
+    }
+
+    public BitmapFont getSmallerPixelFont() {
+        return smallerPixelFont;
     }
 }

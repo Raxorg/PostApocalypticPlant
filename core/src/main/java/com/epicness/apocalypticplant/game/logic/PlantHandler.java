@@ -10,6 +10,7 @@ import static com.epicness.fundamentals.SharedConstants.CAMERA_WIDTH;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.epicness.apocalypticplant.game.stuff.Segment;
 import com.epicness.fundamentals.stuff.DualSprited;
@@ -63,14 +64,16 @@ public class PlantHandler extends GameLogicHandler {
         lastX = nextX;
         lastY = nextY;
         spawnLeaves(newSegment);
-        if (newSegment.end.y >= CAMERA_HEIGHT) {
+        Array<Vector2> path = newSegment.path;
+        if (path.get(path.size - 1).y >= CAMERA_HEIGHT - 50f) {
             newPlant();
         }
         assets.getLeafSound().play();
     }
 
     private void spawnLeaf(Segment segment, float segmentPortion, float angle, Color color) {
-        Vector2 segmentPoint = segment.start.cpy().lerp(segment.end, segmentPortion);
+        int pointIndex = (int) MathUtils.map(0f, 1f, 0, segment.path.size - 1, segmentPortion);
+        Vector2 segmentPoint = segment.path.get(pointIndex);
         DualSprited leaf = new DualSprited(assets.getLeaf(), assets.getLeafGlow());
         leaf.setSize(LEAF_WIDTH, LEAF_HEIGHT);
         leaf.setOrigin(LEAF_ORIGIN_X, LEAF_ORIGIN_Y);
@@ -84,7 +87,7 @@ public class PlantHandler extends GameLogicHandler {
     private void spawnLeaves(Segment segment) {
         int leaves = MathUtils.random(1, 2);
         for (int i = 0; i < leaves; i++) {
-            float portion = MathUtils.random(0.8f);
+            float portion = MathUtils.random(0.2f, 0.8f);
             float angle = MathUtils.random(-40f, 220f);
             Color color = segment.color1.cpy().lerp(segment.color2, portion);
             spawnLeaf(segment, portion, angle, color);

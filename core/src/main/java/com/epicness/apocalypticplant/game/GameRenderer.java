@@ -1,8 +1,7 @@
 package com.epicness.apocalypticplant.game;
 
-import static com.badlogic.gdx.graphics.Texture.TextureFilter.Linear;
+import static com.badlogic.gdx.graphics.Color.BLACK;
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.ScreenUtils;
@@ -16,15 +15,13 @@ public class GameRenderer extends Renderer<GameStuff> {
     private final ShapeDrawer shapeDrawer;
 
     public GameRenderer() {
-        Texture pixel = new Texture("fundamentals/images/pixel.png");
-        pixel.setFilter(Linear, Linear);
-        shapeDrawer = new ShapeDrawer(spriteBatch, new TextureRegion(pixel));
-        shapeDrawer.setDefaultLineWidth(10f);
+        TextureRegion pixel = new TextureRegion(new Texture("fundamentals/images/pixel.png"));
+        shapeDrawer = new ShapeDrawer(spriteBatch, pixel);
     }
 
     @Override
     public void render() {
-        ScreenUtils.clear(Color.BLACK);
+        ScreenUtils.clear(BLACK);
 
         spriteBatch.begin();
         stuff.getPlant().draw(shapeDrawer);
@@ -37,6 +34,8 @@ public class GameRenderer extends Renderer<GameStuff> {
         for (int i = 0; i < stuff.getLives().size; i++) {
             stuff.getLives().get(i).draw(spriteBatch);
         }
+        stuff.getResetButton().draw(spriteBatch);
+        stuff.getZenButton().draw(spriteBatch);
         for (int i = 0; i < stuff.getFishes().size; i++) {
             stuff.getFishes().get(i).draw(spriteBatch);
         }
