@@ -10,10 +10,12 @@ import com.epicness.fundamentals.stuff.interfaces.Scrollable;
 public class DualSprited implements Buttonable, Scrollable {
 
     protected final Sprite background, foreground;
+    private boolean backgroundButtonable;
 
     public DualSprited(Sprite backgroundSprite, Sprite foregroundSprite) {
         background = new Sprite(backgroundSprite);
         foreground = new Sprite(foregroundSprite);
+        backgroundButtonable = true;
     }
 
     public void drawBackground(SpriteBatch spriteBatch) {
@@ -31,7 +33,12 @@ public class DualSprited implements Buttonable, Scrollable {
 
     @Override
     public boolean contains(float x, float y) {
-        return background.getBoundingRectangle().contains(x, y);
+        return (backgroundButtonable && background.getBoundingRectangle().contains(x, y))
+                || (!backgroundButtonable && foreground.getBoundingRectangle().contains(x, y));
+    }
+
+    public void setBackgroundButtonable(boolean backgroundButtonable) {
+        this.backgroundButtonable = backgroundButtonable;
     }
 
     @Override
@@ -95,6 +102,11 @@ public class DualSprited implements Buttonable, Scrollable {
         foreground.translateX(amount);
     }
 
+    public void translate(float xAmount, float yAmount) {
+        translateX(xAmount);
+        translateY(yAmount);
+    }
+
     public void setBackgroundSize(float width, float height) {
         background.setSize(width, height);
     }
@@ -123,13 +135,13 @@ public class DualSprited implements Buttonable, Scrollable {
         return new Vector2(getBackgroundWidth(), getBackgroundHeight());
     }
 
-    public void setSize(float size) {
-        setSize(size, size);
-    }
-
     public void setSize(float width, float height) {
         background.setSize(width, height);
         foreground.setSize(width, height);
+    }
+
+    public void setSize(float size) {
+        setSize(size, size);
     }
 
     public void rotateBackground(float degrees) {
@@ -209,5 +221,17 @@ public class DualSprited implements Buttonable, Scrollable {
     public void setColor(Color color) {
         setBackgroundColor(color);
         setForegroundColor(color);
+    }
+
+    public float getBackgroundCenterX() {
+        return background.getX() + background.getWidth() / 2f;
+    }
+
+    public float getBackgroundCenterY() {
+        return background.getY() + background.getHeight() / 2f;
+    }
+
+    public Vector2 getBackgroundCenter() {
+        return new Vector2(getBackgroundCenterX(), getBackgroundCenterY());
     }
 }

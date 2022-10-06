@@ -28,9 +28,9 @@ public class PlantHandler extends GameLogicHandler {
         lastX = CAMERA_WIDTH / 2f;
         lastY = 100f;
 
-        lastColor = Random.fullyRandomColor();
+        lastColor = Random.opaqueColor();
         float curving = MathUtils.random(-25f, 25f);
-        Segment initialSegment = new Segment(startX, startY, lastX, lastY, Random.fullyRandomColor(), lastColor, curving);
+        Segment initialSegment = new Segment(startX, startY, lastX, lastY, Random.opaqueColor(), lastColor, curving);
         List<Segment> segments = stuff.getPlant().getSegments();
         segments.clear();
         segments.add(initialSegment);
@@ -54,7 +54,7 @@ public class PlantHandler extends GameLogicHandler {
             nextY = MathUtils.random(lastY + 150f, lastY + 240f);
         }
         Vector2 next = new Vector2(nextX, nextY);
-        Color endColor = Random.fullyRandomColor();
+        Color endColor = Random.opaqueColor();
         float curving = MathUtils.random(-90f, 90f);
         Segment newSegment = new Segment(lastX, lastY, next.x, next.y, lastColor, endColor, curving);
         segments.add(newSegment);
@@ -103,12 +103,12 @@ public class PlantHandler extends GameLogicHandler {
         logic.get(LivesHandler.class).addLife();
         lastX = MathUtils.random(75f, CAMERA_WIDTH - 75f);
         lastY = 0f;
-        for (int i = 0; i < stuff.getPlant().getSegments().size() - 20; i++) {
+        for (int i = 0; i < stuff.getPlant().getSegments().size() - 25; i++) {
             Segment segment = stuff.getPlant().getSegments().get(i);
             segment.color1.a = Math.max(segment.color1.a - 0.075f, 0.1f);
             segment.color2.a = Math.max(segment.color2.a - 0.075f, 0.1f);
         }
-        for (int i = 0; i < stuff.getLeaves().size - 50; i++) {
+        for (int i = 0; i < stuff.getLeaves().size - 62; i++) {
             DualSprited leaf = stuff.getLeaves().get(i);
 
             Color color = leaf.getForegroundColor();

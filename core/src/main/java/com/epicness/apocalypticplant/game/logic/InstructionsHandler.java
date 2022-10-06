@@ -16,7 +16,7 @@ public class InstructionsHandler extends GameLogicHandler {
     protected void init() {
         Text instructions = stuff.getInstructions();
         instructions.setPosition(20f, CAMERA_HEIGHT - 20f);
-        instructions.setText("Click the screen before 0\n3 error margin\ni to hide");
+        instructions.setText("Click the screen before 0\n3 error margin\ni to toggle");
         instructions.setTextTargetWidth(CAMERA_WIDTH);
     }
 

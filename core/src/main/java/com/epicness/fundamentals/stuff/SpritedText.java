@@ -70,6 +70,10 @@ public class SpritedText implements Buttonable, Scrollable {
         return background.getWidth();
     }
 
+    public float getHeight() {
+        return background.getHeight();
+    }
+
     public void setSize(float size) {
         setSize(size, size);
     }

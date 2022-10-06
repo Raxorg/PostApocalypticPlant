@@ -5,6 +5,7 @@ import static com.badlogic.gdx.graphics.g2d.Animation.PlayMode.LOOP;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public class SpritedAnimation {
 
@@ -23,8 +24,16 @@ public class SpritedAnimation {
         animation.getKeyFrame(time).draw(spriteBatch);
     }
 
+    public void drawDebug(ShapeRenderer shapeRenderer) {
+        animation.getKeyFrame(time).drawDebug(shapeRenderer);
+    }
+
     public void addTime(float seconds) {
         time += seconds;
+    }
+
+    public boolean contains(float x, float y) {
+        return animation.getKeyFrame(time).contains(x, y);
     }
 
     public void setPosition(float x, float y) {
@@ -33,13 +42,31 @@ public class SpritedAnimation {
         }
     }
 
-    public void setSize(float size) {
-        setSize(size, size);
+    public void setOriginBasedPosition(float x, float y) {
+        for (int i = 0; i < animation.getKeyFrames().length; i++) {
+            animation.getKeyFrames()[i].setOriginBasedPosition(x, y);
+        }
     }
 
     public void setSize(float width, float height) {
         for (int i = 0; i < animation.getKeyFrames().length; i++) {
             animation.getKeyFrames()[i].setSize(width, height);
+        }
+    }
+
+    public void setSize(float size) {
+        setSize(size, size);
+    }
+
+    public void setOriginCenter() {
+        for (int i = 0; i < animation.getKeyFrames().length; i++) {
+            animation.getKeyFrames()[i].setOriginCenter();
+        }
+    }
+
+    public void setScale(float scale) {
+        for (int i = 0; i < animation.getKeyFrames().length; i++) {
+            animation.getKeyFrames()[i].setScale(scale);
         }
     }
 

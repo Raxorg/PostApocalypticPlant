@@ -47,6 +47,7 @@ public class CounterHandler extends GameLogicHandler {
         time -= delta;
         updateCounter();
         if (time <= 0f) {
+            logic.get(OverlayHandler.class).show();
             logic.get(LivesHandler.class).loseLife();
             time = MathUtils.random(2.8f, 3.5f);
         }
@@ -70,6 +71,7 @@ public class CounterHandler extends GameLogicHandler {
         }
         if (time > 0.33f) {
             logic.get(LivesHandler.class).loseLife();
+            logic.get(OverlayHandler.class).show();
         } else {
             logic.get(PlantHandler.class).grow();
             logic.get(ScoreHandler.class).addScore();

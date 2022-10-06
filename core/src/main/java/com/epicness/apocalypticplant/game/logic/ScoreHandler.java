@@ -14,10 +14,10 @@ public class ScoreHandler extends GameLogicHandler {
 
     @Override
     protected void init() {
-        score = 1;
+        score = 0;
         Text scoreText = stuff.getScoreText();
         scoreText.setY(CAMERA_HEIGHT - 20f);
-        scoreText.setText("score: " + score);
+        scoreText.setText(score + "");
         scoreText.setTextTargetWidth(CAMERA_WIDTH);
         scoreText.setHorizontalAlignment(center);
         scoreText.setColor(WHITE);
@@ -29,9 +29,7 @@ public class ScoreHandler extends GameLogicHandler {
     }
 
     public void addScore() {
-        score = (int) ((score + 1) * 1.5);
-        Text scoreText = stuff.getScoreText();
-        scoreText.setText("score: " + score);
+        stuff.getScoreText().setText(++score + "");
     }
 
     public void disable() {

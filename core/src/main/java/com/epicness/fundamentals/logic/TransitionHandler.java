@@ -7,12 +7,12 @@ public class TransitionHandler {
 
     // Structure
     private SharedResources sharedResources;
-    private Initializer initializer;
+    private Initializer<?, ?, ?> initializer;
     private SharedLogic logic;
     // Logic
     private boolean transitionAllowed;
 
-    public void startTransition(Initializer nextInitializer) {
+    public void startTransition(Initializer<?, ?, ?> nextInitializer) {
         initializer = sharedResources.findInitializer(nextInitializer);
         logic.getAssetLoader().startLoadingAssets(initializer.getAssets());
     }

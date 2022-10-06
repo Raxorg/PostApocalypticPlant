@@ -29,9 +29,17 @@ public abstract class Renderer<S extends Stuff<?>> {
         shapeRenderer.setProjectionMatrix(screen.getStaticCamera().combined);
     }
 
-    protected void useDynamicCamera() {
+    public void useDynamicCamera() {
         spriteBatch.setProjectionMatrix(screen.getDynamicCamera().combined);
         shapeRenderer.setProjectionMatrix(screen.getDynamicCamera().combined);
+    }
+
+    public SpriteBatch getSpriteBatch() {
+        return spriteBatch;
+    }
+
+    public ShapeRenderer getShapeRenderer() {
+        return shapeRenderer;
     }
 
     // Structure

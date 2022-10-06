@@ -2,6 +2,8 @@ package com.epicness.apocalypticplant.game.stuff;
 
 import static com.epicness.apocalypticplant.game.GameConstants.BUTTON_SIZE;
 import static com.epicness.apocalypticplant.game.GameConstants.BUTTON_X;
+import static com.epicness.fundamentals.SharedConstants.CAMERA_HEIGHT;
+import static com.epicness.fundamentals.SharedConstants.CAMERA_WIDTH;
 
 import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.epicness.apocalypticplant.game.assets.GameAssets;
@@ -19,6 +21,7 @@ public class GameStuff extends Stuff<GameAssets> {
     private DelayedRemovalArray<Sprited> lives;
     private SpritedText resetButton, zenButton;
     private DelayedRemovalArray<Fish> fish;
+    private Sprited overlay;
 
     @Override
     public void initializeStuff() {
@@ -40,6 +43,8 @@ public class GameStuff extends Stuff<GameAssets> {
         zenButton.setText("Z");
 
         fish = new DelayedRemovalArray<>();
+        overlay = new Sprited(sharedAssets.getPixel());
+        overlay.setSize(CAMERA_WIDTH, CAMERA_HEIGHT);
     }
 
     public Plant getPlant() {
@@ -76,5 +81,9 @@ public class GameStuff extends Stuff<GameAssets> {
 
     public DelayedRemovalArray<Fish> getFishes() {
         return fish;
+    }
+
+    public Sprited getOverlay() {
+        return overlay;
     }
 }

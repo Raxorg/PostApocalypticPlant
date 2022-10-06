@@ -39,6 +39,7 @@ public class GameRenderer extends Renderer<GameStuff> {
         for (int i = 0; i < stuff.getFishes().size; i++) {
             stuff.getFishes().get(i).draw(spriteBatch);
         }
+        stuff.getOverlay().draw(spriteBatch);
         spriteBatch.end();
     }
 }

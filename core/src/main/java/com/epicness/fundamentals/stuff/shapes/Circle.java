@@ -1,26 +1,22 @@
-package com.epicness.fundamentals.stuff;
+package com.epicness.fundamentals.stuff.shapes;
 
 import static com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType.Line;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Vector2;
 
 public class Circle {
 
     private float x, y, radius;
     private Color color;
-    private ShapeType type;
 
-    public Circle(float radius, ShapeType type) {
+    public Circle(float radius) {
         this.radius = radius;
-        color = Color.WHITE;
-        this.type = type;
+        color = Color.GRAY;
     }
 
     public void draw(ShapeRenderer shapeRenderer) {
-        shapeRenderer.set(type);
         shapeRenderer.setColor(color);
         shapeRenderer.circle(x, y, radius);
     }
@@ -31,8 +27,12 @@ public class Circle {
         shapeRenderer.circle(x, y, radius);
     }
 
-    public float getX() {
+    public float getCenterX() {
         return x;
+    }
+
+    public float getEndX() {
+        return x + radius;
     }
 
     public void setX(float x) {

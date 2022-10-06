@@ -87,6 +87,10 @@ public class Text implements Buttonable, Scrollable {
         bounds.x += x;
     }
 
+    public float getWidth() {
+        return TextUtils.getTextWidth(this);
+    }
+
     public float getHeight() {
         return TextUtils.getTextHeight(this);
     }

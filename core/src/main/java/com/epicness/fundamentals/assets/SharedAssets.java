@@ -9,6 +9,7 @@ import static com.epicness.fundamentals.SharedConstants.PIXEL_PATH;
 import static com.epicness.fundamentals.SharedConstants.SQUARE_32_INVERTED_PATH;
 import static com.epicness.fundamentals.SharedConstants.SQUARE_32_PATH;
 import static com.epicness.fundamentals.SharedConstants.TIMES_SQUARE_PATH;
+import static com.epicness.fundamentals.SharedConstants.TRIANGLE_PATH;
 import static com.epicness.fundamentals.SharedConstants.WEIRD_SHAPE_PATH;
 
 import com.badlogic.gdx.audio.Sound;
@@ -22,7 +23,7 @@ public class SharedAssets extends Assets {
     // Fonts
     private BitmapFont pixelFont, timesSquare;
     // Sprites
-    private Sprite circle;
+    private Sprite circle, triangle;
     private Sprite glow;
     private Sprite pixel;
     private Sprite square, squareInverted;
@@ -37,6 +38,7 @@ public class SharedAssets extends Assets {
         loadFont(TIMES_SQUARE_PATH);
         // Sprites
         loadTexture(CIRCLE_PATH);
+        loadTexture(TRIANGLE_PATH);
         loadTexture(GLOW_PATH);
         loadTexture(PIXEL_PATH);
         loadTexture(SQUARE_32_PATH);
@@ -52,13 +54,13 @@ public class SharedAssets extends Assets {
         pixelFont = getFont(PIXEL_FONT_PATH);
         timesSquare = getFont(TIMES_SQUARE_PATH);
         // Sprites
-        circle = new Sprite(getTexture(CIRCLE_PATH));
-        circle.getTexture().setFilter(Linear, Linear);
-        glow = new Sprite(getTexture(GLOW_PATH));
-        pixel = new Sprite(getTexture(PIXEL_PATH));
-        square = new Sprite(getTexture(SQUARE_32_PATH));
-        squareInverted = new Sprite(getTexture(SQUARE_32_INVERTED_PATH));
-        weirdShape = new Sprite(getTexture(WEIRD_SHAPE_PATH));
+        circle = getSprite(CIRCLE_PATH, Linear);
+        triangle = getSprite(TRIANGLE_PATH, Linear);
+        glow = getSprite(GLOW_PATH);
+        pixel = getSprite(PIXEL_PATH);
+        square = getSprite(SQUARE_32_PATH);
+        squareInverted = getSprite(SQUARE_32_INVERTED_PATH);
+        weirdShape = getSprite(WEIRD_SHAPE_PATH);
     }
 
     // Audio
@@ -78,6 +80,10 @@ public class SharedAssets extends Assets {
     // Sprites
     public Sprite getCircle() {
         return circle;
+    }
+
+    public Sprite getTriangle() {
+        return triangle;
     }
 
     public Sprite getGlow() {

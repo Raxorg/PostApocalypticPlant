@@ -88,12 +88,33 @@ public class Sprited implements Buttonable, Parallaxable {
         return new Vector2(getCenterX(), getCenterY());
     }
 
+    public float getOriginBasedX() {
+        return sprite.getX() + sprite.getOriginX();
+    }
+
+    public float getOriginBasedY() {
+        return sprite.getY() + sprite.getOriginY();
+    }
+
+    public Vector2 getOriginBasedCenter() {
+        return new Vector2(getOriginBasedX(), getOriginBasedY());
+    }
+
     public void translateY(float amount) {
         sprite.translateY(amount);
     }
 
+    public void translate(float xAmount, float yAmount) {
+        translateX(xAmount);
+        translateY(yAmount);
+    }
+
     public float getWidth() {
         return sprite.getWidth();
+    }
+
+    public void setWidth(float width) {
+        sprite.setSize(width, getHeight());
     }
 
     public float getHeight() {
@@ -101,7 +122,7 @@ public class Sprited implements Buttonable, Parallaxable {
     }
 
     public void setHeight(float height) {
-        sprite.setSize(sprite.getWidth(), height);
+        sprite.setSize(getWidth(), height);
     }
 
     public void setSize(float width, float height) {
@@ -120,6 +141,18 @@ public class Sprited implements Buttonable, Parallaxable {
         sprite.setScale(scale);
     }
 
+    public float getOriginX() {
+        return sprite.getOriginX();
+    }
+
+    public float getOriginY() {
+        return sprite.getOriginY();
+    }
+
+    public void setOrigin(float originX, float originY) {
+        sprite.setOrigin(originX, originY);
+    }
+
     public void setOriginCenter() {
         sprite.setOriginCenter();
     }
@@ -130,6 +163,10 @@ public class Sprited implements Buttonable, Parallaxable {
 
     public void setRotation(float degrees) {
         sprite.setRotation(degrees);
+    }
+
+    public void rotate(float degrees) {
+        sprite.rotate(degrees);
     }
 
     public boolean isFlipX() {

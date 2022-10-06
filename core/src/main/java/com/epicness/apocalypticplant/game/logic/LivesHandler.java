@@ -1,5 +1,6 @@
 package com.epicness.apocalypticplant.game.logic;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.epicness.fundamentals.stuff.Sprited;
 import com.epicness.fundamentals.utils.Random;
@@ -39,7 +40,9 @@ public class LivesHandler extends GameLogicHandler {
         Sprited life = new Sprited(assets.getHeart());
         life.setSize(100f);
         life.translateX(100f * lives.size);
-        life.setColor(Random.fullyRandomColor());
+        Color color = Random.opaqueColor();
+        color.a = 0.5f;
+        life.setColor(color);
         lives.add(life);
     }
 

@@ -21,7 +21,7 @@ public class Fish extends DualSprited {
         text.setText(MathUtils.randomBoolean(0.02f) ? "I am wiggling I swear" : "");
         text.setTextTargetWidth(500f);
         speed = MathUtils.random(75f, 400f);
-        Color color = Random.fullyRandomColor();
+        Color color = Random.opaqueColor();
         setColor(color);
         text.setColor(color);
         float scale = MathUtils.random(0.25f, 0.75f);
